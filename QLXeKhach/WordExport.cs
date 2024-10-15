@@ -1,13 +1,8 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Word = Microsoft.Office.Interop.Word;
-using DataTable = System.Data.DataTable;
 using System.IO;
-//using System.Data;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace QLXeKhach
 {
@@ -16,33 +11,28 @@ namespace QLXeKhach
         public Word.Application _app;
         public Word.Document _doc;
         public object _pathFile;
+        private object missing = System.Reflection.Missing.Value;
 
         public WordExport(string vPath, bool vCreateApp = true)
         {
             _pathFile = vPath;
-
-            // Create a new Word application instance if required
             if (vCreateApp)
             {
                 _app = new Word.Application();
             }
-
-            // Check if the template file exists
             if (!File.Exists(vPath))
             {
                 throw new FileNotFoundException("Template file not found: " + vPath);
             }
-
-            // Open the Word document template
-            _doc = _app.Documents.Open(_pathFile);
+            object readOnly = true;
+            object fileName = _pathFile;
+            _doc = _app.Documents.Open(ref fileName, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
         }
 
-        // Method to write values to placeholders in the Word template
         public void WriteFields(Dictionary<string, string> fieldValues)
         {
             foreach (var item in fieldValues)
             {
-                // Search for placeholders in the format of {key}
                 Word.Find find = _app.Selection.Find;
                 find.Text = "{" + item.Key + "}";
                 find.Replacement.Text = item.Value;
@@ -51,17 +41,23 @@ namespace QLXeKhach
             }
         }
 
-        // Save the document to a specified path
         public void SaveAs(string outputPath)
         {
-            _doc.SaveAs2(outputPath);
+            object fileFormat = Word.WdSaveFormat.wdFormatXMLDocument;
+            object fileName = outputPath;
+            _doc.SaveAs2(ref fileName, ref fileFormat);
         }
 
-        // Close the document and the application
         public void Close()
         {
-            _doc.Close();
-            _app.Quit();
+            if (_doc != null)
+            {
+                _doc.Close(false);
+            }
+            if (_app != null)
+            {
+                _app.Quit();
+            }
         }
     }
 }

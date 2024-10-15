@@ -261,84 +261,55 @@ namespace QLXeKhach
                 MessageBox.Show("Vui lòng chọn một vé để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             var selectedRow = dgvVe.SelectedRows[0];
             string ticketIDToExport = selectedRow.Cells["TicketID"].Value.ToString();
 
-            ExportTicketToWord(ticketIDToExport);
+            // Lấy dữ liệu từ các control
+            string busCompany = cboNhaXe.Text;
+            string customerName = txtTenHanhKhach.Text;
+            string departure = txtDiemDi.Text;
+            string destination = txtDiemDen.Text;
+            DateTime departureDateTime = dtpNgayKhoiHanh.Value;
+            string departureTime = departureDateTime.ToString("dd/MM/yyyy");
+            string time = departureDateTime.ToString("HH:mm");
+            string price = txtGia.Text;
+            string seatNumber = txtSeatNumber.Text;
+
+            // Truyền dữ liệu vào hàm xuất
+            ExportTicketToWord(ticketIDToExport, busCompany, customerName, departure, destination, departureTime, time, price, seatNumber);
         }
 
-        private void ExportTicketToWord(string ticketID)
+
+        private void ExportTicketToWord(string ticketID, string busCompany, string customerName, string departure, string destination, string departureTime, string time, string price, string seatNumber)
         {
             try
             {
-                if (database == null || ticketsCollection == null || busesCollection == null)
+                // Tạo đối tượng WordExport để xuất dữ liệu ra file Word
+                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Templates", "veXeKhach.docx");
+                if (!File.Exists(templatePath))
                 {
-                    MessageBox.Show("Database connection is not initialized.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Template file not found: {templatePath}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Lấy thông tin vé từ database
-                var filter = Builders<BsonDocument>.Filter.Eq("ticketID", ticketID);
-                var ticket = ticketsCollection.Find(filter).FirstOrDefault();
-
-                if (ticket == null)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin vé.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Lấy thông tin chuyến đi
-                var tripFilter = Builders<BsonDocument>.Filter.Eq("_id", ticket["tripID"]);
-                var trip = database.GetCollection<BsonDocument>("trips").Find(tripFilter).FirstOrDefault();
-
-                if (trip == null)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin chuyến đi.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Lấy thông tin xe buýt
-                var busFilter = Builders<BsonDocument>.Filter.Eq("_id", trip["busID"]);
-                var bus = database.GetCollection<BsonDocument>("buses").Find(busFilter).FirstOrDefault();
-
-                if (bus == null)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin xe buýt.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Lấy thông tin khách hàng
-                var customerFilter = Builders<BsonDocument>.Filter.Eq("_id", ticket["customerID"]);
-                var customer = database.GetCollection<BsonDocument>("customers").Find(customerFilter).FirstOrDefault();
-
-                if (customer == null)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Tạo đối tượng WordExport
-                string templatePath = Path.Combine(Application.StartupPath, "Templates", "veXeKhach.docx");
-                WordExport wordExport = new WordExport(templatePath, false);
+                WordExport wordExport = new WordExport(templatePath, true);
 
                 // Chuẩn bị dữ liệu để điền vào template
-                Dictionary<string, string> fieldValues = new Dictionary<string, string>
-        {
-            { "busCompany", bus["busCompany"].AsString },
-            { "name", customer["name"].AsString },
-            { "departure", trip["departure"].AsString },
-            { "destination", trip["destination"].AsString },
-            { "departureTime", trip["departureTime"].ToUniversalTime().ToString("dd/MM/yyyy") },
-            { "time", trip["departureTime"].ToUniversalTime().ToString("HH:mm") },
-            { "price", ticket["price"].ToString() + " đ" },
-            { "seatNumber", ticket["seatNumber"].AsString }
-        };
+                Dictionary<string, string> fieldValues = new Dictionary<string, string> {
+            { "busCompany", busCompany },
+            { "name", customerName },
+            { "departure", departure },
+            { "destination", destination },
+            { "departureTime", departureTime },
+            { "time", time },
+            { "price", price + " đ" },
+            { "seatNumber", seatNumber }
+            };
 
-                // Điền thông tin vào template
+                // Điền dữ liệu vào template
                 wordExport.WriteFields(fieldValues);
 
-                // Lưu file
+                // Lưu file Word ra Desktop
                 string outputPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Ve_{ticketID}.docx");
                 wordExport.SaveAs(outputPath);
                 wordExport.Close();
@@ -350,5 +321,6 @@ namespace QLXeKhach
                 MessageBox.Show($"Có lỗi xảy ra khi xuất vé: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
