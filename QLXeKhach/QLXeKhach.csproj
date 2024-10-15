@@ -164,6 +164,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBaoCaoTheoCTy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaoCaoTheoCTy.Designer.cs">
+      <DependentUpon>frmBaoCaoTheoCTy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBaoCaoTheoKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaoCaoTheoKhachHang.Designer.cs">
+      <DependentUpon>frmBaoCaoTheoKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDecorPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +222,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAuthentication.cs" />
+    <EmbeddedResource Include="frmBaoCaoTheoCTy.resx">
+      <DependentUpon>frmBaoCaoTheoCTy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBaoCaoTheoKhachHang.resx">
+      <DependentUpon>frmBaoCaoTheoKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDecorPage.resx">
       <DependentUpon>frmDecorPage.cs</DependentUpon>
     </EmbeddedResource>

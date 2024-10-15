@@ -25,7 +25,7 @@ namespace QLXeKhach
         private void InitializeMongoDB()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach1");
+            var database = client.GetDatabase("QLyXeKhach");
             collection = database.GetCollection<BsonDocument>("tickets");
         }
 
@@ -60,7 +60,7 @@ namespace QLXeKhach
         private void btnThem_Click(object sender, EventArgs e)
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach");
+            var database = client.GetDatabase("QLyXeKhach");
             var collection = database.GetCollection<BsonDocument>("tickets");
 
             var newTicket = new BsonDocument
@@ -95,7 +95,7 @@ namespace QLXeKhach
             string ticketIDToUpdate = selectedRow.Cells["ticketID"].Value.ToString();
 
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach");
+            var database = client.GetDatabase("QLyXeKhach");
             var collection = database.GetCollection<BsonDocument>("tickets");
 
             var updatedTicket = new BsonDocument
@@ -138,7 +138,7 @@ namespace QLXeKhach
             string ticketIDToDelete = selectedRow.Cells["ticketID"].Value.ToString();
 
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach");
+            var database = client.GetDatabase("QLyXeKhach");
             var collection = database.GetCollection<BsonDocument>("tickets");
 
             var filter = Builders<BsonDocument>.Filter.Eq("ticketID", ticketIDToDelete);

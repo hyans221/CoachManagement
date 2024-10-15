@@ -27,7 +27,7 @@ namespace QLXeKhach
         private void InitializeMongoDB()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach1");
+            var database = client.GetDatabase("QLyXeKhach");
             collection = database.GetCollection<BsonDocument>("trips");
             busCollection = database.GetCollection<BsonDocument>("buses");
         }
@@ -184,7 +184,7 @@ namespace QLXeKhach
             string tripIDToDelete = selectedRow.Cells["tripID"].Value.ToString();
 
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("QLXeKhach1");
+            var database = client.GetDatabase("QLyXeKhach");
             var collection = database.GetCollection<BsonDocument>("trips");
 
             var filter = Builders<BsonDocument>.Filter.Eq("tripID", tripIDToDelete);
