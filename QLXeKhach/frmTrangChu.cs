@@ -84,5 +84,22 @@ namespace QLXeKhach
             frmDangNhap dangNhap = new frmDangNhap();
             dangNhap.Show();
         }
+
+        private void btnLocTheoNhaXe_Click(object sender, EventArgs e)
+        {
+            labelTitleFrm.Text = "LỌC THEO NHÀ XE";
+            container(new frmBaoCaoTheoCTy());
+        }
+
+        private void btnLocTheoSoLuong_Click(object sender, EventArgs e)
+        {
+            labelTitleFrm.Text = "LỌC THEO SỐ LƯỢNG KHÁCH HÀNG";
+            container(new frmBaoCaoTheoKhachHang());
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

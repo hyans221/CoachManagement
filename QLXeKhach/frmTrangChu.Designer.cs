@@ -47,6 +47,8 @@
             this.DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
+            this.btnLocTheoNhaXe = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLocTheoSoLuong = new Guna.UI2.WinForms.Guna2Button();
             this.panelSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnToggle)).BeginInit();
             this.Panel_top.SuspendLayout();
@@ -58,7 +60,7 @@
             this.Panel_container.Location = new System.Drawing.Point(205, 43);
             this.Panel_container.Name = "Panel_container";
             this.Panel_container.ShadowDecoration.Parent = this.Panel_container;
-            this.Panel_container.Size = new System.Drawing.Size(835, 597);
+            this.Panel_container.Size = new System.Drawing.Size(852, 682);
             this.Panel_container.TabIndex = 8;
             // 
             // labelTitleFrm
@@ -88,7 +90,7 @@
             this.ControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.ControlBox3.HoverState.Parent = this.ControlBox3;
             this.ControlBox3.IconColor = System.Drawing.Color.Gray;
-            this.ControlBox3.Location = new System.Drawing.Point(892, 2);
+            this.ControlBox3.Location = new System.Drawing.Point(909, 2);
             this.ControlBox3.Name = "ControlBox3";
             this.ControlBox3.ShadowDecoration.Parent = this.ControlBox3;
             this.ControlBox3.Size = new System.Drawing.Size(45, 29);
@@ -101,7 +103,7 @@
             this.ControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.ControlBox2.HoverState.Parent = this.ControlBox2;
             this.ControlBox2.IconColor = System.Drawing.Color.Gray;
-            this.ControlBox2.Location = new System.Drawing.Point(943, 2);
+            this.ControlBox2.Location = new System.Drawing.Point(960, 2);
             this.ControlBox2.Name = "ControlBox2";
             this.ControlBox2.ShadowDecoration.Parent = this.ControlBox2;
             this.ControlBox2.Size = new System.Drawing.Size(45, 29);
@@ -113,7 +115,7 @@
             this.ControlBox1.FillColor = System.Drawing.Color.Transparent;
             this.ControlBox1.HoverState.Parent = this.ControlBox1;
             this.ControlBox1.IconColor = System.Drawing.Color.Gray;
-            this.ControlBox1.Location = new System.Drawing.Point(994, 2);
+            this.ControlBox1.Location = new System.Drawing.Point(1011, 2);
             this.ControlBox1.Name = "ControlBox1";
             this.ControlBox1.ShadowDecoration.Parent = this.ControlBox1;
             this.ControlBox1.Size = new System.Drawing.Size(45, 29);
@@ -122,6 +124,8 @@
             // panelSidebar
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.White;
+            this.panelSidebar.Controls.Add(this.btnLocTheoSoLuong);
+            this.panelSidebar.Controls.Add(this.btnLocTheoNhaXe);
             this.panelSidebar.Controls.Add(this.btnQL_Ve);
             this.panelSidebar.Controls.Add(this.btnQL_ChuyenDi);
             this.panelSidebar.Controls.Add(this.btnExit);
@@ -134,7 +138,7 @@
             this.panelSidebar.Location = new System.Drawing.Point(0, 43);
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.ShadowDecoration.Parent = this.panelSidebar;
-            this.panelSidebar.Size = new System.Drawing.Size(205, 597);
+            this.panelSidebar.Size = new System.Drawing.Size(205, 682);
             this.panelSidebar.TabIndex = 6;
             // 
             // btnQL_Ve
@@ -210,7 +214,7 @@
             this.btnExit.Text = "Đăng Xuất";
             this.btnExit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnExit.TextOffset = new System.Drawing.Point(8, 0);
-            this.btnExit.Click += new System.EventHandler(this.btnQL_TaiKhoan_Click);
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnQL_TaiKhoan
             // 
@@ -313,18 +317,68 @@
             this.Panel_top.Location = new System.Drawing.Point(0, 0);
             this.Panel_top.Name = "Panel_top";
             this.Panel_top.ShadowDecoration.Parent = this.Panel_top;
-            this.Panel_top.Size = new System.Drawing.Size(1040, 43);
+            this.Panel_top.Size = new System.Drawing.Size(1057, 43);
             this.Panel_top.TabIndex = 7;
             // 
             // DragControl1
             // 
             this.DragControl1.TargetControl = this.Panel_top;
             // 
+            // btnLocTheoNhaXe
+            // 
+            this.btnLocTheoNhaXe.CheckedState.Parent = this.btnLocTheoNhaXe;
+            this.btnLocTheoNhaXe.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnLocTheoNhaXe.CustomImages.Parent = this.btnLocTheoNhaXe;
+            this.btnLocTheoNhaXe.FillColor = System.Drawing.Color.Transparent;
+            this.btnLocTheoNhaXe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLocTheoNhaXe.ForeColor = System.Drawing.Color.Black;
+            this.btnLocTheoNhaXe.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(94)))), ((int)(((byte)(121)))));
+            this.btnLocTheoNhaXe.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(94)))), ((int)(((byte)(121)))));
+            this.btnLocTheoNhaXe.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnLocTheoNhaXe.HoverState.Parent = this.btnLocTheoNhaXe;
+            this.btnLocTheoNhaXe.Image = global::QLXeKhach.Properties.Resources.icons8_ticket_40;
+            this.btnLocTheoNhaXe.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLocTheoNhaXe.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnLocTheoNhaXe.Location = new System.Drawing.Point(-3, 435);
+            this.btnLocTheoNhaXe.Name = "btnLocTheoNhaXe";
+            this.btnLocTheoNhaXe.ShadowDecoration.Parent = this.btnLocTheoNhaXe;
+            this.btnLocTheoNhaXe.Size = new System.Drawing.Size(208, 66);
+            this.btnLocTheoNhaXe.TabIndex = 7;
+            this.btnLocTheoNhaXe.Text = "Lọc theo nhà xe";
+            this.btnLocTheoNhaXe.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLocTheoNhaXe.TextOffset = new System.Drawing.Point(8, 0);
+            this.btnLocTheoNhaXe.Click += new System.EventHandler(this.btnLocTheoNhaXe_Click);
+            // 
+            // btnLocTheoSoLuong
+            // 
+            this.btnLocTheoSoLuong.CheckedState.Parent = this.btnLocTheoSoLuong;
+            this.btnLocTheoSoLuong.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnLocTheoSoLuong.CustomImages.Parent = this.btnLocTheoSoLuong;
+            this.btnLocTheoSoLuong.FillColor = System.Drawing.Color.Transparent;
+            this.btnLocTheoSoLuong.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLocTheoSoLuong.ForeColor = System.Drawing.Color.Black;
+            this.btnLocTheoSoLuong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(94)))), ((int)(((byte)(121)))));
+            this.btnLocTheoSoLuong.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(94)))), ((int)(((byte)(121)))));
+            this.btnLocTheoSoLuong.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnLocTheoSoLuong.HoverState.Parent = this.btnLocTheoSoLuong;
+            this.btnLocTheoSoLuong.Image = global::QLXeKhach.Properties.Resources.icons8_ticket_40;
+            this.btnLocTheoSoLuong.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLocTheoSoLuong.ImageOffset = new System.Drawing.Point(8, 0);
+            this.btnLocTheoSoLuong.Location = new System.Drawing.Point(-3, 507);
+            this.btnLocTheoSoLuong.Name = "btnLocTheoSoLuong";
+            this.btnLocTheoSoLuong.ShadowDecoration.Parent = this.btnLocTheoSoLuong;
+            this.btnLocTheoSoLuong.Size = new System.Drawing.Size(208, 66);
+            this.btnLocTheoSoLuong.TabIndex = 8;
+            this.btnLocTheoSoLuong.Text = "Lọc theo số lượng";
+            this.btnLocTheoSoLuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLocTheoSoLuong.TextOffset = new System.Drawing.Point(8, 0);
+            this.btnLocTheoSoLuong.Click += new System.EventHandler(this.btnLocTheoSoLuong_Click);
+            // 
             // frmTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 640);
+            this.ClientSize = new System.Drawing.Size(1057, 725);
             this.Controls.Add(this.Panel_container);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.Panel_top);
@@ -361,5 +415,7 @@
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm1;
         private Guna.UI2.WinForms.Guna2Button btnExit;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
+        private Guna.UI2.WinForms.Guna2Button btnLocTheoSoLuong;
+        private Guna.UI2.WinForms.Guna2Button btnLocTheoNhaXe;
     }
 }
